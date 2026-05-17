@@ -20,8 +20,8 @@
 ### 请求示例
 
 ```bash
-export BASE_URL="http://127.0.0.1:8788"
-export TOKEN="stk_你的Token明文"
+export BASE_URL="https://stock.xray.top"
+export TOKEN="stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5"
 
 curl -sS "$BASE_URL/api/v2/open/meta/ping" \
   -H "Authorization: Bearer $TOKEN" \
@@ -30,7 +30,7 @@ curl -sS "$BASE_URL/api/v2/open/meta/ping" \
 
 ## 响应
 
-> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
+> **注意：** 下列数据来自线上实调（`https://stock.xray.top`），Token 9 已重置并验证可用。
 
 ### 响应信封
 
@@ -38,14 +38,14 @@ curl -sS "$BASE_URL/api/v2/open/meta/ping" \
 |------|-----|
 | `code` | 0 |
 | `message` | success |
-| `requestId` | `req_ce3e83f79cbc4e048f609e4043ef6047` |
-| `ts` | 2026-05-17T20:15:11.566134 |
+| `requestId` | `req_8c4b0cb1263742109c0c8e4b2ba8d8b9` |
+| `ts` | 2026-05-18T07:33:37.862993 |
 
 ### `data` 字段（2026-05-13）
 
 | message | tokenId | scope | path |
 | --- | --- | --- | --- |
-| open api reachable | 3 | market:read | /api/v2/open/meta/ping |
+| open api reachable | 9 | market:read | /api/v2/open/meta/ping |
 
 ### 完整 JSON（节选）
 
@@ -55,12 +55,12 @@ curl -sS "$BASE_URL/api/v2/open/meta/ping" \
   "message": "success",
   "data": {
     "message": "open api reachable",
-    "tokenId": 3,
+    "tokenId": 9,
     "scope": "market:read",
     "path": "/api/v2/open/meta/ping"
   },
-  "requestId": "req_ce3e83f79cbc4e048f609e4043ef6047",
-  "ts": "2026-05-17T20:15:11.566134"
+  "requestId": "req_8c4b0cb1263742109c0c8e4b2ba8d8b9",
+  "ts": "2026-05-18T07:33:37.862993"
 }
 ```
 
