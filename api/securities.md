@@ -27,27 +27,62 @@
 export BASE_URL="http://127.0.0.1:8788"
 export TOKEN="stk_你的Token明文"
 
-curl -sS "$BASE_URL/api/v2/open/market/securities?q=银行&limit=5" \
+curl -sS "$BASE_URL/api/v2/open/market/securities?code=000001&limit=3" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json"
 ```
 
 ## 响应
 
-### 响应示例（JSON）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
+
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_647aaf58650f4219b580b86798146398` |
+| `ts` | 2026-05-17T20:15:11.784776 |
+
+### 分页信息
+
+| 分页字段 | 值 |
+|----------|-----|
+| `data.count` | 1 |
+| `data.total` | — |
+| `data.hasMore` | false |
+| `data.nextCursor` | — |
+
+### `data.items` 表格（2026-05-13）
+
+| symbol | name |
+| --- | --- |
+| 000001 | 平安银行 |
+
+### 完整 JSON（节选）
 
 ```json
-{"code":0,"data":{"items":[{"symbol":"000001","name":"平安银行"}],"count":1}}
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "symbol": "000001",
+        "name": "平安银行"
+      }
+    ],
+    "count": 1,
+    "total": null,
+    "totalRelation": "unknown",
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "requestId": "req_647aaf58650f4219b580b86798146398",
+  "ts": "2026-05-17T20:15:11.784776"
+}
 ```
-
-### 响应字段（节选）
-
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
 
 ### 可能出现的错误
 

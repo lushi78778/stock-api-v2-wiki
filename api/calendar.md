@@ -25,27 +25,62 @@
 export BASE_URL="http://127.0.0.1:8788"
 export TOKEN="stk_你的Token明文"
 
-curl -sS "$BASE_URL/api/v2/open/market/calendar?start=2026-05-01&end=2026-05-31" \
+curl -sS "$BASE_URL/api/v2/open/market/calendar?start=2026-05-13&end=2026-05-13" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json"
 ```
 
 ## 响应
 
-### 响应示例（JSON）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
+
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_c940165d6e064ee1bf601cb650dc4f78` |
+| `ts` | 2026-05-17T20:15:11.808914 |
+
+### 分页信息
+
+| 分页字段 | 值 |
+|----------|-----|
+| `data.count` | 1 |
+| `data.total` | — |
+| `data.hasMore` | false |
+| `data.nextCursor` | — |
+
+### `data.items` 表格（2026-05-13）
+
+| tradeDate | open |
+| --- | --- |
+| 2026-05-13 | True |
+
+### 完整 JSON（节选）
 
 ```json
-{"code":0,"data":{"items":[{"tradeDate":"2026-05-13","isOpen":1}]}}
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "tradeDate": "2026-05-13",
+        "open": true
+      }
+    ],
+    "count": 1,
+    "total": null,
+    "totalRelation": "unknown",
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "requestId": "req_c940165d6e064ee1bf601cb650dc4f78",
+  "ts": "2026-05-17T20:15:11.808914"
+}
 ```
-
-### 响应字段（节选）
-
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
 
 ### 可能出现的错误
 

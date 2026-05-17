@@ -26,21 +26,96 @@
 export BASE_URL="http://127.0.0.1:8788"
 export TOKEN="stk_你的Token明文"
 
-curl -sS "$BASE_URL/api/v2/open/market/external/instruments?assetType=market&limit=5" \
+curl -sS "$BASE_URL/api/v2/open/market/external/instruments?limit=3" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json"
 ```
 
 ## 响应
 
-### 响应字段（节选）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
 
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_a6946921cf4643c3a62b846f0d209f19` |
+| `ts` | 2026-05-17T20:15:12.049358 |
+
+### 分页信息
+
+| 分页字段 | 值 |
+|----------|-----|
+| `data.count` | 3 |
+| `data.total` | — |
+| `data.hasMore` | true |
+| `data.nextCursor` | c1.eyJ2IjoxLCJyZXNvdXJjZ… |
+
+### `data.items` 表格（2026-05-13）
+
+| name | assetType | code | sourceSymbol | sourceMarket | currency | unit | firstTradeDate | lastTradeDate | count |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 布伦特原油 | commodity | brent_oil | OIL | SINA_FOREIGN | USD | barrel | 2026-04-01 | 2026-05-15 | 32 |
+| 铜 | commodity | copper | HG | SINA_FOREIGN | USD | pound | 2026-04-01 | 2026-05-15 | 32 |
+| 黄金 | commodity | gold | XAU | SINA_FOREIGN | USD | troy_ounce | 2026-04-01 | 2026-05-15 | 32 |
+
+### 完整 JSON（节选）
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "assetType": "commodity",
+        "code": "brent_oil",
+        "sourceSymbol": "OIL",
+        "name": "布伦特原油",
+        "sourceMarket": "SINA_FOREIGN",
+        "currency": "USD",
+        "unit": "barrel",
+        "firstTradeDate": "2026-04-01",
+        "lastTradeDate": "2026-05-15",
+        "count": 32
+      },
+      {
+        "assetType": "commodity",
+        "code": "copper",
+        "sourceSymbol": "HG",
+        "name": "铜",
+        "sourceMarket": "SINA_FOREIGN",
+        "currency": "USD",
+        "unit": "pound",
+        "firstTradeDate": "2026-04-01",
+        "lastTradeDate": "2026-05-15",
+        "count": 32
+      },
+      {
+        "assetType": "commodity",
+        "code": "gold",
+        "sourceSymbol": "XAU",
+        "name": "黄金",
+        "sourceMarket": "SINA_FOREIGN",
+        "currency": "USD",
+        "unit": "troy_ounce",
+        "firstTradeDate": "2026-04-01",
+        "lastTradeDate": "2026-05-15",
+        "count": 32
+      }
+    ],
+    "count": 3,
+    "total": null,
+    "totalRelation": "unknown",
+    "nextCursor": "c1.eyJ2IjoxLCJyZXNvdXJjZSI6ImV4dGVybmFsX2luc3RydW1lbnRzIiwib3JkZXIiOlsiYXNzZXRUeXBlIiwiY29kZSIsInNvdXJjZVN5bWJvbCJdLCJrZXlzIjp7ImNvZGUiOiJnb2xkIiwiYXNzZXRUeXBlIjoiY29tbW9kaXR5Iiwic291cmNlU3ltYm9sIjoiWEFVIn0sImZpbHRlcnMiOnsiYXNzZXRUeXBlIjoiIiwicSI6IiJ9LCJpc3N1ZWRBdCI6IjIwMjYtMDUtMTdUMjA6MTU6MTIuMDQ5Mjc0KzA4OjAwIn0",
+    "hasMore": true
+  },
+  "requestId": "req_a6946921cf4643c3a62b846f0d209f19",
+  "ts": "2026-05-17T20:15:12.049358"
+}
+```
 
 ### 可能出现的错误
 

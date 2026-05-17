@@ -25,21 +25,119 @@
 export BASE_URL="http://127.0.0.1:8788"
 export TOKEN="stk_你的Token明文"
 
-curl -sS "$BASE_URL/api/v2/open/market/quality/coverage-check?start=2026-04-17&end=2026-05-13&boardTypes=industry&boardCodes=BK0420" \
+curl -sS "$BASE_URL/api/v2/open/market/quality/coverage-check?start=2026-05-13&end=2026-05-13&boardTypes=industry&boardCodes=BK0420" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json"
 ```
 
 ## 响应
 
-### 响应字段（节选）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
 
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_e5c1e6b4ee3e4ac2aba83ee2b8f6fc92` |
+| `ts` | 2026-05-17T20:15:11.769717 |
+
+### 分页信息
+
+| 分页字段 | 值 |
+|----------|-----|
+| `data.count` | 6 |
+| `data.total` | — |
+| `data.hasMore` | false |
+| `data.nextCursor` | — |
+
+### `data.items` 表格（2026-05-13）
+
+| dataset | minDate | maxDate | tradeDays | rowCount | expectedOpenDays | missingOpenDates |
+| --- | --- | --- | --- | --- | --- | --- |
+| calendar_open | 2026-05-13 | 2026-05-13 | 1 | 1 | 1 | [] |
+| board_industry_history | 2026-05-13 | 2026-05-13 | 1 | 1 | 1 | [] |
+| board_industry_constituent | 2026-05-13 | 2026-05-13 | 1 | 14 | 1 | [] |
+| stock_hist_raw_daily | 2026-05-13 | 2026-05-13 | 1 | 5493 | 1 | [] |
+| stock_individual_info_daily | 2026-05-13 | 2026-05-13 | 1 | 5517 | 1 | [] |
+| zt_pool | 2026-05-13 | 2026-05-13 | 1 | 113 | 1 | [] |
+
+### 完整 JSON（节选）
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "start": "2026-05-13",
+    "end": "2026-05-13",
+    "items": [
+      {
+        "dataset": "calendar_open",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 1,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      },
+      {
+        "dataset": "board_industry_history",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 1,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      },
+      {
+        "dataset": "board_industry_constituent",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 14,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      },
+      {
+        "dataset": "stock_hist_raw_daily",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 5493,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      },
+      {
+        "dataset": "stock_individual_info_daily",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 5517,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      },
+      {
+        "dataset": "zt_pool",
+        "minDate": "2026-05-13",
+        "maxDate": "2026-05-13",
+        "tradeDays": 1,
+        "rowCount": 113,
+        "expectedOpenDays": 1,
+        "missingOpenDates": []
+      }
+    ],
+    "count": 6,
+    "total": null,
+    "totalRelation": "unknown",
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "requestId": "req_e5c1e6b4ee3e4ac2aba83ee2b8f6fc92",
+  "ts": "2026-05-17T20:15:11.769717"
+}
+```
 
 ### 可能出现的错误
 

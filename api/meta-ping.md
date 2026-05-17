@@ -30,20 +30,39 @@ curl -sS "$BASE_URL/api/v2/open/meta/ping" \
 
 ## 响应
 
-### 响应示例（JSON）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
+
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_ce3e83f79cbc4e048f609e4043ef6047` |
+| `ts` | 2026-05-17T20:15:11.566134 |
+
+### `data` 字段（2026-05-13）
+
+| message | tokenId | scope | path |
+| --- | --- | --- | --- |
+| open api reachable | 3 | market:read | /api/v2/open/meta/ping |
+
+### 完整 JSON（节选）
 
 ```json
-{"code":0,"data":{"message":"open api reachable","scope":"market:read"}}
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "message": "open api reachable",
+    "tokenId": 3,
+    "scope": "market:read",
+    "path": "/api/v2/open/meta/ping"
+  },
+  "requestId": "req_ce3e83f79cbc4e048f609e4043ef6047",
+  "ts": "2026-05-17T20:15:11.566134"
+}
 ```
-
-### 响应字段（节选）
-
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
 
 ### 可能出现的错误
 

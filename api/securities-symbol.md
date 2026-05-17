@@ -29,14 +29,37 @@ curl -sS "$BASE_URL/api/v2/open/market/securities/{symbol}/000001" \
 
 ## 响应
 
-### 响应字段（节选）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
 
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_b2bd126bc4604a5aad894f6ff9483bc2` |
+| `ts` | 2026-05-17T20:15:11.796918 |
+
+### `data` 字段（2026-05-13）
+
+| symbol | name |
+| --- | --- |
+| 000001 | 平安银行 |
+
+### 完整 JSON（节选）
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "symbol": "000001",
+    "name": "平安银行"
+  },
+  "requestId": "req_b2bd126bc4604a5aad894f6ff9483bc2",
+  "ts": "2026-05-17T20:15:11.796918"
+}
+```
 
 ### 可能出现的错误
 

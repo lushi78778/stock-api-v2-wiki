@@ -28,20 +28,39 @@ curl -sS "$BASE_URL/api/v2/open/market/health" \
 
 ## 响应
 
-### 响应示例（JSON）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
+
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_e3eb96bf4460490883976c92c996762e` |
+| `ts` | 2026-05-17T20:15:11.58878 |
+
+### `data` 字段（2026-05-13）
+
+| message | ok | latencyMs | stockReadEnabled |
+| --- | --- | --- | --- |
+| ok | True | 0 | True |
+
+### 完整 JSON（节选）
 
 ```json
-{"code":0,"data":{"ok":true,"latencyMs":1}}
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "stockReadEnabled": true,
+    "ok": true,
+    "latencyMs": 0,
+    "message": "ok"
+  },
+  "requestId": "req_e3eb96bf4460490883976c92c996762e",
+  "ts": "2026-05-17T20:15:11.58878"
+}
 ```
-
-### 响应字段（节选）
-
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
 
 ### 可能出现的错误
 

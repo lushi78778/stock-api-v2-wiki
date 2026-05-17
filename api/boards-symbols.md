@@ -28,21 +28,72 @@
 export BASE_URL="http://127.0.0.1:8788"
 export TOKEN="stk_你的Token明文"
 
-curl -sS "$BASE_URL/api/v2/open/market/boards/symbols?boardTypes=industry&boardCodes=BK0420&start=2026-05-13&end=2026-05-13" \
+curl -sS "$BASE_URL/api/v2/open/market/boards/symbols?boardTypes=industry&boardCodes=BK0420&start=2026-05-13&end=2026-05-13&limit=3" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json"
 ```
 
 ## 响应
 
-### 响应字段（节选）
+> **注意：** 下列数据来自本地实调（`http://127.0.0.1:8788`），行情类示例交易日为 **2026-05-13**。
 
-| 字段 | 说明 |
-|------|------|
-| `code` | 0 为成功 |
-| `data.items` | 数据行 |
-| `data.nextCursor` | 下一页游标 |
-| `data.hasMore` | 是否还有下一页 |
+### 响应信封
+
+| 字段 | 值 |
+|------|-----|
+| `code` | 0 |
+| `message` | success |
+| `requestId` | `req_157d40ad4df54a8f8cc34b6006fce844` |
+| `ts` | 2026-05-17T20:15:12.022796 |
+
+### 分页信息
+
+| 分页字段 | 值 |
+|----------|-----|
+| `data.count` | 3 |
+| `data.total` | — |
+| `data.hasMore` | true |
+| `data.nextCursor` | c1.eyJ2IjoxLCJyZXNvdXJjZ… |
+
+### `data.items` 表格（2026-05-13）
+
+| symbol | name |
+| --- | --- |
+| 000089 | 深圳机场 |
+| 000099 | 中信海直 |
+| 002928 | 华夏航空 |
+
+### 完整 JSON（节选）
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "symbol": "000089",
+        "name": "深圳机场"
+      },
+      {
+        "symbol": "000099",
+        "name": "中信海直"
+      },
+      {
+        "symbol": "002928",
+        "name": "华夏航空"
+      }
+    ],
+    "count": 3,
+    "total": null,
+    "totalRelation": "unknown",
+    "nextCursor": "c1.eyJ2IjoxLCJyZXNvdXJjZSI6ImJvYXJkX3N5bWJvbHMiLCJvcmRlciI6WyJzeW1ib2wiXSwia2V5cyI6eyJzeW1ib2wiOiIwMDI5MjgifSwiZmlsdGVycyI6eyJzdGFydCI6IjIwMjYtMDUtMTMiLCJib2FyZFR5cGVzIjpbImluZHVzdHJ5Il0sImVuZCI6IjIwMjYtMDUtMTMiLCJib2FyZENvZGVzIjpbIkJLMDQyMCJdfSwiaXNzdWVkQXQiOiIyMDI2LTA1LTE3VDIwOjE1OjEyLjAyMjcyMiswODowMCJ9",
+    "hasMore": true
+  },
+  "requestId": "req_157d40ad4df54a8f8cc34b6006fce844",
+  "ts": "2026-05-17T20:15:12.022796"
+}
+```
 
 ### 可能出现的错误
 
