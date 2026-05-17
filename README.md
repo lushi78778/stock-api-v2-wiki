@@ -27,7 +27,7 @@ Accept: application/json
 ### 1. 注册账号
 
 1. 浏览器打开 **https://stock.xray.top** 进入用户门户。
-2. 使用邮箱注册：先 `POST /api/v2/public/register/code` 获取验证码，再 `POST /api/v2/public/register/verify` 完成验证。
+2. 使用邮箱注册：先获取验证码，完成验证。
 3. 按页面引导绑定 TOTP（双因素认证），然后登录。
 
 > **注意：** 注册与登录走 Cookie 会话，**不需要** API Token。Token 仅在调用 `/api/v2/open/**` 时使用。
