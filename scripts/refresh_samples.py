@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import urllib.request
 from pathlib import Path
 
 BASE = "http://127.0.0.1:8788"
-TOKEN = "stk_NjYxMWZlZGEtOTU0MC00MWRmLWE1YzUtOTliNDBkMTViMTRm"
+TOKEN = os.environ.get("STOCK_API_TOKEN", "")
 DATE = "2026-05-13"
 ROOT = Path(__file__).resolve().parent.parent
 API = ROOT / "api"
@@ -245,6 +246,8 @@ def patch_file(name: str, body: dict, fetch_path: str) -> None:
 
 
 def main() -> None:
+    if not TOKEN:
+        raise SystemExit("Set STOCK_API_TOKEN before refreshing API samples.")
     for name, (curl_suffix, fetch_path) in ENDPOINTS.items():
         try:
             body = fetch(fetch_path)

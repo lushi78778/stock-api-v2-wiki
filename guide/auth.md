@@ -5,7 +5,7 @@
 所有 `/api/v2/open/**` 接口都需要在请求头携带：
 
 ```http
-Authorization: Bearer stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5
+Authorization: Bearer stk_你的Token明文
 Accept: application/json
 ```
 
@@ -20,15 +20,15 @@ Accept: application/json
 | `X-Request-Id` | 否 | 你自己的请求 ID，便于和日志对齐 |
 | `X-Client-Name` | 否 | 调用方名称，例如 `my-quant-bot` |
 
-## 当前可用 Token
+## Token 管理
 
-Token 9 已重置，当前明文 Token：
+Token 9 已重置。为避免明文泄露，文档不记录真实 Token；请登录门户，在 **Token 管理** 中复制最新明文。
 
 ```text
-stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5
+stk_你的Token明文
 ```
 
-如果 Token 9 后续再次重置，旧明文会立即失效；脚本、环境变量、Postman/Apifox 环境配置都需要同步替换。
+如果 Token 后续再次重置，旧明文会立即失效；脚本、环境变量、Postman/Apifox 环境配置都需要同步替换。
 
 ## scope 是什么
 

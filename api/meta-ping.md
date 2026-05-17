@@ -21,7 +21,7 @@
 
 ```bash
 export BASE_URL="https://stock.xray.top"
-export TOKEN="stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5"
+export TOKEN="stk_你的Token明文"
 
 curl -sS "$BASE_URL/api/v2/open/meta/ping" \
   -H "Authorization: Bearer $TOKEN" \
@@ -30,7 +30,7 @@ curl -sS "$BASE_URL/api/v2/open/meta/ping" \
 
 ## 响应
 
-> **注意：** 下列数据来自线上实调（`https://stock.xray.top`），Token 9 已重置并验证可用。
+> **注意：** 下列数据为响应结构示例。请使用门户中复制的最新 Token 发起实调。
 
 ### 响应信封
 

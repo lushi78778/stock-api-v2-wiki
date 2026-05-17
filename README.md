@@ -16,18 +16,18 @@
 
 `GET /api/v2/open/meta/ping` → `https://stock.xray.top/api/v2/open/meta/ping`
 
-## 当前 Token
+## Token 使用方式
 
-Token 9 已重置，当前明文 Token 为：
+Token 9 已重置。为避免明文泄露，文档不再记录真实 Token；请在门户的 **Token 管理** 中复制最新明文，并只放在本地环境变量或私有配置里。
 
 ```text
-stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5
+stk_你的Token明文
 ```
 
 使用时放在 `Authorization` 请求头里，格式如下：
 
 ```http
-Authorization: Bearer stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5
+Authorization: Bearer stk_你的Token明文
 Accept: application/json
 ```
 
@@ -35,7 +35,7 @@ Accept: application/json
 
 - `Bearer` 和 Token 之间必须有一个空格。
 - Token 不要拼在 URL 参数里，统一放在 Header。
-- 如果后续再次重置 Token 9，旧明文会立即失效，需要替换脚本、定时任务、Postman 环境变量里的值。
+- 如果后续再次重置 Token，旧明文会立即失效，需要替换脚本、定时任务、Postman 环境变量里的值。
 - 开放行情接口通常需要 `market:read` 权限。
 
 ## 快速开始
@@ -46,7 +46,7 @@ Accept: application/json
 
 ```bash
 export BASE_URL="https://stock.xray.top"
-export TOKEN="stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5"
+export TOKEN="stk_你的Token明文"
 
 curl -sS "$BASE_URL/api/v2/open/meta/ping" \
   -H "Authorization: Bearer $TOKEN" \
@@ -399,7 +399,7 @@ Node.js 18+ 或现代浏览器都可以使用 `fetch`。服务端脚本建议使
 
 ```javascript
 const BASE_URL = 'https://stock.xray.top';
-const TOKEN = 'stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5';
+const TOKEN = 'stk_你的Token明文';
 
 async function request(path) {
   const res = await fetch(`${BASE_URL}${path}`, {
@@ -427,7 +427,7 @@ console.log(data.items);
 import requests
 
 BASE_URL = "https://stock.xray.top"
-TOKEN = "stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5"
+TOKEN = "stk_你的Token明文"
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
@@ -523,6 +523,6 @@ for row in body["data"]["items"]:
 如果需要在工具里调试，可以先访问 `https://stock.xray.top/v3/api-docs` 获取 OpenAPI JSON，再导入 Postman、Apifox 或 Knife4j；调用时统一添加：
 
 ```http
-Authorization: Bearer stk_ZjgzN2ViMTAtMTFjNS00ZjA5LWI0YzgtNzdmMGU0MDM4YmE5
+Authorization: Bearer stk_你的Token明文
 Accept: application/json
 ```
